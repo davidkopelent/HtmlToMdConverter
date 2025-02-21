@@ -1,0 +1,33 @@
+Převodník dokumentů
+
+Převodník dokumentů bude převádět HTML dokumenty na MarkDown dokumenty a naopak. 
+Programu bude možné ke konverzi zadat jednotlivé soubory, více souboru nebo celou složku (i rekurzivně), ve které program překonvertuje pouze soubory zadaného formátu a ostatní přeskočí.
+V terminálu bude během konverze možné sledovat stav konverze (počet úspěšně překonvertovaných souborů, nastalé chyby a jejich příčiny / zdroje atd.). 
+Pokud dojde při konverzi nějakého dokumentu k chybě (nepodporované formátování, poškozený soubor, nenalezený soubor, nepodporovaný formát souboru atd.) program vypíše varování, 
+u kterého souboru nastal problém a daný soubor buď přeskočí (poškozený soubor nebo jiná chyba konverze) nebo zachová původní formátování (nepodporované formátování) a pokračuje v konverzi.
+
+Program bude pro oba formáty podporovat následující:
+    -  Nadpisy
+    -  Odstavce textu a zvýraznění, podtržení, kurzíva
+    -  Odkazy
+    -  Obrázky
+    -  Tabulky
+    -  Odrážkové / číselné seznamy 
+
+Konverze HTML -> MarkDown:
+    Program odstraní hlavičku HTML dokumentu. 
+    Dále převede všechny podporované HMTL tagy na MarkDown formát.
+    Nepodporované formáty ponechá beze změny.
+    Výsledný MarkDown dokument uloží pod stejným názvem jako původní HTML dokument s koncovkou "-converted" do stejné složky.
+
+Konverze MarkDown -> HTML:
+    Program vygeneruje hlavičku a záhlaví HTML souboru.
+    Dále převede podporované MarkDown tagy na HTML formát.
+    Nepodporované formáty ponechá beze změny.
+    Výsledný HTML dokument uloží pod stejným názvem jako původní MarkDown dokument s koncovkou "-converted" do stejné složky.
+
+Polymorfismus:
+    Polymorfismus se využije při konverzi jednotlivých částí dokumentů - nadpisy, texty, obrázky, tabulky atd.
+    Kostrou konverze bude abstraktní třída CConvert, která bude definovat rozhraní pro konverzi jednotlivých typů dokumentů.
+    Od této třídy budou její rozhranit dále dědit třídy CHtml a CMarkDown, které budou implementovat samotnou konverzi jednotlivých částí dokumentu.
+    Tedy třída CConvert slouží primárně k definici rozhraní pro konverzi.

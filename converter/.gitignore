@@ -1,0 +1,5 @@
+examples/*
+*.o
+kopeldav
+doc
+doc/*
